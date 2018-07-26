@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<!--login page, choose the datamaker username and his/her passwd, then choose the attr he/she will label.-->
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>login</title>
+</head>
+<body>
+<h4>User login and attribute choose:</h4>
+<form action="loginproc.php" method="post">
+    username: <input type="text" name="username">
+    <br>
+    password: <input type="password" name="passwd">
+    <br>
+    <select name="attrs">
+        <option value="squarePlate">squarePlate</option>
+	<!--
+        <option value="carColor">carColor</option>
+        <option value="carDirection">carDirection</option>
+        <option value="carType">carType</option>
+        <option value="plateType">plateType</option>
+	-->
+    </select>
+    <br>
+    <input type="submit" value="Login">
+</form>
+</body>
