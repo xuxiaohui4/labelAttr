@@ -33,9 +33,11 @@ CREATE TABLE IF NOT EXISTS `img_label` (
   `image_name` varchar(255) NOT NULL DEFAULT '0',
   `data_source` varchar(255) DEFAULT NULL,
   `squarePlate` tinyint(1) DEFAULT NULL,
+  `identifiable` tinyint(1) DEFAULT NULL,
   PRIMARY KEY (`Id`)
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=1;
 
+alter table img_label add plateNum varchar(255);
 -- --------------------------------------------------------
 
 --
@@ -61,7 +63,7 @@ CREATE TABLE IF NOT EXISTS `user_label` (
   `imgid` int(11) unsigned NOT NULL DEFAULT '0',
   `attr` varchar(255) DEFAULT NULL,
   `label_time` datetime DEFAULT NULL ,
-  `label_value` tinyint(1) DEFAULT NULL,
+  `label_value` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`Id`)
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=1;
 

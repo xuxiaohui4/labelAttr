@@ -4,13 +4,14 @@ import MySQLdb
 import time
 import random
 import pdb
+import sys
 
 conn = MySQLdb.connect(host='127.0.0.1', port=3306, user='root', passwd='admin', db='labelattr', charset='utf8')
 cursor = conn.cursor()
 
 # get all attributes existing in the img_labels
 #img_attrs = ['carTail', 'carColor', 'carDirection', 'carType', 'plateType']
-img_attrs = ['squarePlate']
+img_attrs = ['plateNum']
 
 # create 3 tables: users, user_label, img_label
 
@@ -44,13 +45,16 @@ for line in open(img_names_file):
     line = line.strip()
     img_list.append(line)
 
+pdb.set_trace()
+
 # add items into table img_label and user_label
 n = 0
 for line in img_list:
     n += 1
     if(n % 100 == 0):
         print('Writing {}th image:{} to database.'.format(n, line))
-    line = line.split('/')
+    line = line.split()
+    line = line[0].split('/')
     imgname = line.pop()
     data_source = '/'.join(line)
     try:
@@ -94,6 +98,7 @@ for line in img_list:
         conn.rollback()
         print('database insert exception')
 
+'''
 # according to the existing users, re-distribute the images which have not been labeled to them randomly
 temp_sql = 'select Id from user_label where label_value is NULL'
 cursor.execute(temp_sql)
@@ -109,5 +114,6 @@ for row in results:
     except:
         conn.rollback()
 print("Update {} items".format(n))
+'''
 
 conn.close()

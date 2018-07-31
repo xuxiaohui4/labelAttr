@@ -26,3 +26,7 @@ Attribute in this version:
 2018-7-26 Version2:
 1,更改服务器将数据提交至mysql的方式，原来为对于每一条数据都push到user_label和img_label表中，现在为先收集attr值为0和1的imgid集合，然后直接一次更新掉这些imgid的属性值，大大提高了速度。
 Todo:数据结构优化，自动根据可能的attr值，建立多个array收集imgid。
+
+2018-7-31 Version3:
+1,更改服务器数据提交至mysql方式，此版本为正式稳定版，相比与上一版，适应性更强，采用mysql的拼接语句方式update table set item=CASE Id when 1 then 'value' when 2 then 'value' ... end where Id in (1, 2, ...)的方式;
+2,目前form提交的_POST数组中，固定三种 draw_list0001, text_box0001, radio0001，根据每个图片的需求选择性注释掉labelattr.php中的对应部分，即可不产生相应的变量组。
